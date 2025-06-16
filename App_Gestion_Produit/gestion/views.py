@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produit
 from .forms import ProduitForm
 from django.core.paginator import Paginator
+from .models import Facture
+from .forms import FactureForm
 
 # Lister les produits avec pagination
 def liste_produits(request):
