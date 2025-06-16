@@ -43,3 +43,20 @@ def supprimer_produit(request, produit_id):
         produit.delete()
         return redirect('liste_produits')
     return render(request, 'gestion/produit_confirm_delete.html', {'produit': produit})
+
+
+# Créer une facture
+def creer_facture(request):
+    if request.method == 'POST':
+        form = FactureForm(request.POST)
+        if form.is_valid():
+            facture = form.save()
+            return redirect('detail_facture', facture.id)
+    else:
+        form = FactureForm()
+    return render(request, 'gestion/facture_form.html', {'form': form})
+
+# Afficher une facture
+def detail_facture(request, facture_id):
+    facture = get_object_or_404(Facture, pk=facture_id)
+    return render(request, 'gestion/facture_detail.html', {'facture': facture})
