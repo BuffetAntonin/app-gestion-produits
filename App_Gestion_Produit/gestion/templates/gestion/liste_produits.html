@@ -1,0 +1,23 @@
+<h1>Liste des produits</h1>
+<a href="{% url 'ajouter_produit' %}">Ajouter un produit</a>
+<ul>
+    {% for produit in produits %}
+        <li>
+            {{ produit.nom }} - {{ produit.prix }} € - expire le {{ produit.date_peremption }}
+            [<a href="{% url 'modifier_produit' produit.id %}">Modifier</a>]
+            [<a href="{% url 'supprimer_produit' produit.id %}">Supprimer</a>]
+        </li>
+    {% endfor %}
+</ul>
+
+<div>
+    {% if produits.has_previous %}
+        <a href="?page={{ produits.previous_page_number }}">← Précédent</a>
+    {% endif %}
+
+    Page {{ produits.number }} sur {{ produits.paginator.num_pages }}
+
+    {% if produits.has_next %}
+        <a href="?page={{ produits.next_page_number }}">Suivant →</a>
+    {% endif %}
+</div>
