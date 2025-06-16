@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Détail de la facture{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Détail de la facture #{{ facture.id }}</h1>
+
+<p><strong>Date :</strong> {{ facture.date|date:"d F Y à H:i" }}</p>
+<p><strong>Nombre de produits :</strong> {{ facture.produits.count }}</p>
+
+<p><strong>Liste des produits :</strong></p>
+<ul class="list-group mb-3">
+    {% for produit in facture.produits.all %}
+        <li class="list-group-item">
+            {{ produit.nom }} - {{ produit.prix|floatformat:2  }} €
+        </li>
+    {% endfor %}
+</ul>
+
+<p class="fw-bold">Total à payer : {{ facture.total|floatformat:2 }} €
+</p>
+
+<a href="{% url 'liste_factures' %}" class="btn btn-secondary mt-3">← Retour à la liste des factures</a>
+{% endblock %}

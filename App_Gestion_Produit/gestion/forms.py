@@ -1,19 +1,17 @@
 from django import forms
-from .models import Produit
-from .models import Facture
+from .models import Produit, Facture
 
 class ProduitForm(forms.ModelForm):
     class Meta:
         model = Produit
         fields = ['nom', 'prix', 'date_peremption']
-
-
-class FactureForm(forms.ModelForm):
-    class Meta:
-        model = Facture
-        fields = ['produits']
         widgets = {
-            'produits': forms.CheckboxSelectMultiple
+            'date_peremption': forms.DateInput(attrs={
+                'class': 'form-control datepicker',
+                'autocomplete': 'off'
+            }),
+            'nom': forms.TextInput(attrs={'class': 'form-control'}),
+            'prix': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 class FactureForm(forms.ModelForm):
@@ -21,6 +19,5 @@ class FactureForm(forms.ModelForm):
         model = Facture
         fields = ['produits']
         widgets = {
-            'produits': forms.CheckboxSelectMultiple
+            'produits': forms.CheckboxSelectMultiple()
         }
-

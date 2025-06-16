@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Ajouter / Modifier un produit{% endblock %}
+{% block title %}Créer une facture{% endblock %}
 
 {% block content %}
-<h1>Ajouter / Modifier un produit</h1>
+<h1>Créer une facture</h1>
 <form method="post" class="mb-3">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <button type="submit" class="btn btn-primary">Créer la facture</button>
 </form>
 <a href="{% url 'liste_produits' %}" class="btn btn-secondary">Retour</a>
 {% endblock %}

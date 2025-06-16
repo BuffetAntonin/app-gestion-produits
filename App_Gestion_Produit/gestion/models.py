@@ -14,6 +14,7 @@ class Facture(models.Model):
     date = models.DateTimeField(default=timezone.now)
     produits = models.ManyToManyField(Produit)
 
+    @property
     def total(self):
         return sum(produit.prix for produit in self.produits.all())
 

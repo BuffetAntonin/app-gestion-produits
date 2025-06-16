@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Liste des factures{% endblock %}
+
+{% block content %}
+<h1>Liste des factures</h1>
+
+<ul class="list-group mb-3">
+    {% for facture in page_obj %}
+        <li class="list-group-item">
+        <a href="{% url 'detail_facture' facture.id %}">
+            Facture #{{ facture.id }} - {{ facture.date|date:"d F Y à H:i" }} - {{ facture.total }} €
+        </a>
+        </li>
+    {% empty %}
+        <li class="list-group-item text-muted">Aucune facture trouvée.</li>
+    {% endfor %}
+</ul>
+
+<nav>
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">← Précédent</a></li>
+        {% endif %}
+        <li class="page-item disabled"><span class="page-link">Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</span></li>
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant →</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
