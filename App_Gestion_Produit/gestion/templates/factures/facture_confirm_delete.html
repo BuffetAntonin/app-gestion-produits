@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Supprimer la facture{% endblock %}
+
+{% block content %}
+  <h2>Confirmer la suppression</h2>
+  <p>Êtes-vous sûr de vouloir supprimer la facture #{{ facture.id }} ?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <a href="{% url 'liste_factures' %}" class="btn btn-secondary">Annuler</a>
+    <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+  </form>
+{% endblock %}

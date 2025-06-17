@@ -2,22 +2,30 @@
 {% block title %}Détail de la facture{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Détail de la facture #{{ facture.id }}</h1>
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+        <h1 class="card-title h3 mb-0">Détail de la facture #{{ facture.id }}</h1>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><strong>Date :</strong> {{ facture.date|date:"d F Y à H:i" }}</p>
+        <p class="card-text"><strong>Nombre de produits :</strong> {{ facture.produits.count }}</p>
 
-<p><strong>Date :</strong> {{ facture.date|date:"d F Y à H:i" }}</p>
-<p><strong>Nombre de produits :</strong> {{ facture.produits.count }}</p>
+        <h2 class="h5 mt-4 mb-3">Liste des produits :</h2>
+        <ul class="list-group mb-3">
+            {% for produit in facture.produits.all %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ produit.nom }}</span>
+                    <span class="fw-bold">{{ produit.prix|floatformat:2 }} €</span>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Aucun produit dans cette facture.</li>
+            {% endfor %}
+        </ul>
 
-<p><strong>Liste des produits :</strong></p>
-<ul class="list-group mb-3">
-    {% for produit in facture.produits.all %}
-        <li class="list-group-item">
-            {{ produit.nom }} - {{ produit.prix|floatformat:2  }} €
-        </li>
-    {% endfor %}
-</ul>
+        <p class="h4 fw-bold text-end mt-4">Total à payer : <span class="text-primary">{{ facture.total|floatformat:2 }} €</span></p>
 
-<p class="fw-bold">Total à payer : {{ facture.total|floatformat:2 }} €
-</p>
-
-<a href="{% url 'liste_factures' %}" class="btn btn-secondary mt-3">← Retour à la liste des factures</a>
+        <hr>
+        <a href="{% url 'liste_factures' %}" class="btn btn-secondary mt-3">← Retour à la liste des factures</a>
+    </div>
+</div>
 {% endblock %}

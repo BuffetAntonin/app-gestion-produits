@@ -9,4 +9,6 @@ urlpatterns = [
     path('factures/creer/', views.creer_facture, name='creer_facture'),
     path('factures/<int:facture_id>/', views.detail_facture, name='detail_facture'),
     path('factures/', views.liste_factures, name='liste_factures'),
+    path('factures/<int:facture_id>/modifier/', views.modifier_facture, name='modifier_facture'),
+    path('factures/<int:facture_id>/supprimer/', views.supprimer_facture, name='supprimer_facture'),
 ]

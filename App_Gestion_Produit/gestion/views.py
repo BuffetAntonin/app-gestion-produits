@@ -71,3 +71,23 @@ def liste_factures(request):
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'factures/liste_factures.html', {'page_obj': page_obj})
+
+# Modifier une facture
+def modifier_facture(request, facture_id):
+    facture = get_object_or_404(Facture, pk=facture_id)
+    if request.method == 'POST':
+        form = FactureForm(request.POST, instance=facture)
+        if form.is_valid():
+            form.save()
+            return redirect('detail_facture', facture_id=facture.id)
+    else:
+        form = FactureForm(instance=facture)
+    return render(request, 'factures/facture_form.html', {'form': form})
+
+# Supprimer une facture
+def supprimer_facture(request, facture_id):
+    facture = get_object_or_404(Facture, pk=facture_id)
+    if request.method == 'POST':
+        facture.delete()
+        return redirect('liste_factures')
+    return render(request, 'factures/facture_confirm_delete.html', {'facture': facture})
