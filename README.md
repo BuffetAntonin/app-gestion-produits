@@ -81,11 +81,6 @@ python manage.py runserver
 
 ---
 
-## 🧚‍♂️ Exemple de données (facultatif)
-
-Vous pouvez créer quelques produits manuellement via l’interface pour ensuite générer des factures.
-
----
 
 ## 📌 Auteur
 
