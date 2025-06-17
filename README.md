@@ -89,6 +89,5 @@ Vous pouvez créer quelques produits manuellement via l’interface pour ensuite
 
 ## 📌 Auteur
 
-* **\[Ton Nom ou Pseudo]**
-* Projet réalisé dans le cadre de **\[ta formation / recherche d’alternance / projet personnel]**
-* Contact : \[email ou lien GitHub]
+* **\Antonin Buffet**
+* Contact : \antonin.buffet.jm@gmail.com
